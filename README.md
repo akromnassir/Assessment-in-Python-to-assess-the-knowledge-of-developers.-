@@ -1,52 +1,108 @@
 # Assessment-in-Python-to-assess-the-knowledge-of-developers.-
 Pizza Shop Management features Akrom would like control are various patterns of orders, customer queues, pizza ovens, and customer tables.
 
-Pizza Shop Management System
-Akrom wants to have his own pizza shop. 
-But he is concerned about an issue regarding how to deal with customer-wait-queues. Akrom would like to see a model of pizza shop system that is scalable for various customer demands for simulation purposes.
-So, he decided to test a model of pizza shop management system first and see how large pizza shop he can manage. 
-Help Akrom implement an efficient simulation of pizza shop management system!
-Pizza Shop
-Pizza Shop Management features Akrom would like control are various patterns of orders, customer queues, pizza ovens, and customer tables.
-Order
-•	Order is a single request received when a customer or a group of customers come to Pizza Shop to eat-in. Order includes the number of customers per request, and the details of pizza they would like to have.
-•	Order(s) comes and gets registered into the Pizza Shop system.
-Pizza
-•	Pizza is a single pizza item.
-•	Pizza comes in different sizes, which are SMALL and LARGE.
-•	There is a fixed time a one person (a customer) spends for finishing one whole pizza depending on that pizza size.
-Oven
-•	Oven cooks a pizza one after another. No multiple pizzas are cooked at any instance of time. 
-•	There can be one or many ovens, with each its own pizzas-to-be-cooked queue.
-•	There is a fixed time each oven spends to cook one pizza depending on pizza size.
-•	There is a status that expresses the current status of the each oven, e.g. COOKING or EMPTY.
-•	When there are more than one ovens, Pizza Shop Management System has to implement and decide a mechanism of allocating each pizza to the queue of a particular oven. Customers do not decide on this.
-Table
-•	Table is a place where customers receive their cooked pizza.
-•	Each table has a fixed capacity to accommodate customers.
-•	Customers belonging to the same order should start and finish eating together in one table. 
-•	There is time to spend if a group of customers are reassigned and moved to a different table.
-•	Customers should start eating only when all pizzas in their order are ready together. 
-•	One table can serve more than one group of customers at a time.
-•	Pizza Shop Management System has to allocate each ready order to a particular table. Customers do not decide which table they go to.
-Timestamps
-•	Pizza Shop Management System uses a virtual time and is called a timestamp.
-•	There are two types of timestamps.
-•	Timestamp A is used to configure only request arrival intervals. 
-•	Timestamp B is used to configure the timing of oven(s), and table(s).
-•	Timestamp starts at 0 and increases by 1 at a time. Duration of one time stamp for each type is fixed by Pizza Shop Management System.
-Control method
-•	See the Missions.docx for information on the pizza shops to be controlled.
-•	Mission0_dataset.txt file contains input data for a small Pizza Shop.
-•	Mission1_dataset.txt file contains input data for a large Pizza Shop.
-•	One order consists of 5 data such as (Request Index, Issue time, Number of customers in the request, Number of large pizzas, Number of small pizzas )
-•	What the Issue time means is the time the request arrived at.
-o	Data (0,2,2,1,3) is a request of 2 people to eat 1 large pizza and 3 small pizzas at timestamp 2.
-o	Data (2,30,5,10,0) is a request of 5 people to eat 10 large pizzas and no small pizzas at timestamp 30.
-•	More than one requests can occur in the same timestamp.
-
-Simulation should be showing the status of requests, ovens, and tables at any instance of the time.
-Mission_sample_dataset.txt (Annotated)
+Long simulation
+0,1,1,1,0
+1,1,14,10,2
+2,2,15,8,0
+3,5,1,1,0
+4,15,4,4,2
+5,25,10,14,4
+6,28,7,3,5
+7,29,8,6,0
+8,31,6,6,2
+9,34,6,4,4
+10,35,10,12,4
+11,41,3,3,4
+12,43,7,6,2
+13,49,2,3,3
+14,52,15,12,4
+15,54,11,15,0
+16,57,3,3,3
+17,59,8,4,1
+18,68,14,8,3
+19,68,13,10,4
+20,69,5,4,3
+21,73,1,1,1
+22,74,3,3,0
+23,80,18,25,3
+24,81,17,15,4
+25,82,2,2,5
+26,94,9,10,1
+27,95,14,16,2
+28,101,16,20,5
+29,104,9,10,3
+30,108,15,16,4
+31,109,17,10,5
+32,116,16,12,4
+33,120,18,12,10
+34,124,1,1,2
+35,129,5,4,5
+36,133,11,6,8
+37,133,11,5,2
+38,138,7,7,2
+39,139,18,10,1
+40,142,4,3,2
+41,142,14,5,0
+42,142,14,3,3
+43,144,8,10,4
+44,145,12,13,1
+45,150,9,2,5
+46,152,18,11,7
+47,153,11,12,0
+48,155,18,15,4
+49,173,13,14,5
+50,174,2,2,5
+51,178,8,3,2
+52,184,11,13,2
+53,184,18,20,4
+54,184,13,15,0
+55,186,6,6,5
+56,197,8,8,1
+57,198,10,12,5
+58,199,11,12,4
+59,203,1,1,5
+60,206,3,3,5
+61,207,6,6,1
+62,212,15,5,8
+63,212,12,14,4
+64,213,9,10,5
+65,214,11,13,2
+66,217,14,12,2
+67,219,9,10,2
+68,223,12,13,1
+69,224,10,11,3
+70,225,1,1,1
+71,225,7,7,0
+72,230,13,14,4
+73,235,2,3,5
+74,235,1,2,5
+75,240,9,11,1
+76,242,8,3,5
+77,246,14,5,5
+78,250,13,6,6
+79,252,14,16,4
+80,253,1,1,5
+81,253,17,9,9
+82,255,5,4,3
+83,260,5,5,1
+84,262,6,6,4
+85,266,8,9,0
+86,267,15,20,3
+87,273,8,8,5
+88,273,4,3,5
+89,273,10,12,3
+90,277,18,20,1
+91,285,5,5,4
+92,286,10,6,3
+93,287,16,16,0
+94,287,9,10,1
+95,288,8,10,5
+96,290,17,12,1
+97,290,3,3,0
+98,291,5,4,1
+99,295,10,4,1
+END
 _________________________________________________________________________________________________________________
 Short simulation      brief description of the simulation
 0,30,1,2,0            one customer arrives at timestamp (A) 30 into the simulation
