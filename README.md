@@ -1,44 +1,59 @@
 # Assessment-in-Python-to-assess-the-knowledge-of-developers.-
 Pizza Shop Management features Akrom would like control are various patterns of orders, customer queues, pizza ovens, and customer tables.
 
-This Python code must be represented a basic simulation of a pizza shop management system. It allows customers to place orders, tracks their orders, cooks the pizzas, and assigns tables based on the number of customers. Let's go through the code step by step to understand its functionality
+Pizza Shop Management System
+Akrom wants to have his own pizza shop. 
+But he is concerned about an issue regarding how to deal with customer-wait-queues. Akrom would like to see a model of pizza shop system that is scalable for various customer demands for simulation purposes.
+So, he decided to test a model of pizza shop management system first and see how large pizza shop he can manage. 
+Help Akrom implement an efficient simulation of pizza shop management system!
+Pizza Shop
+Pizza Shop Management features Akrom would like control are various patterns of orders, customer queues, pizza ovens, and customer tables.
+Order
+•	Order is a single request received when a customer or a group of customers come to Pizza Shop to eat-in. Order includes the number of customers per request, and the details of pizza they would like to have.
+•	Order(s) comes and gets registered into the Pizza Shop system.
+Pizza
+•	Pizza is a single pizza item.
+•	Pizza comes in different sizes, which are SMALL and LARGE.
+•	There is a fixed time a one person (a customer) spends for finishing one whole pizza depending on that pizza size.
+Oven
+•	Oven cooks a pizza one after another. No multiple pizzas are cooked at any instance of time. 
+•	There can be one or many ovens, with each its own pizzas-to-be-cooked queue.
+•	There is a fixed time each oven spends to cook one pizza depending on pizza size.
+•	There is a status that expresses the current status of the each oven, e.g. COOKING or EMPTY.
+•	When there are more than one ovens, Pizza Shop Management System has to implement and decide a mechanism of allocating each pizza to the queue of a particular oven. Customers do not decide on this.
+Table
+•	Table is a place where customers receive their cooked pizza.
+•	Each table has a fixed capacity to accommodate customers.
+•	Customers belonging to the same order should start and finish eating together in one table. 
+•	There is time to spend if a group of customers are reassigned and moved to a different table.
+•	Customers should start eating only when all pizzas in their order are ready together. 
+•	One table can serve more than one group of customers at a time.
+•	Pizza Shop Management System has to allocate each ready order to a particular table. Customers do not decide which table they go to.
+Timestamps
+•	Pizza Shop Management System uses a virtual time and is called a timestamp.
+•	There are two types of timestamps.
+•	Timestamp A is used to configure only request arrival intervals. 
+•	Timestamp B is used to configure the timing of oven(s), and table(s).
+•	Timestamp starts at 0 and increases by 1 at a time. Duration of one time stamp for each type is fixed by Pizza Shop Management System.
+Control method
+•	See the Missions.docx for information on the pizza shops to be controlled.
+•	Mission0_dataset.txt file contains input data for a small Pizza Shop.
+•	Mission1_dataset.txt file contains input data for a large Pizza Shop.
+•	One order consists of 5 data such as (Request Index, Issue time, Number of customers in the request, Number of large pizzas, Number of small pizzas )
+•	What the Issue time means is the time the request arrived at.
+o	Data (0,2,2,1,3) is a request of 2 people to eat 1 large pizza and 3 small pizzas at timestamp 2.
+o	Data (2,30,5,10,0) is a request of 5 people to eat 10 large pizzas and no small pizzas at timestamp 30.
+•	More than one requests can occur in the same timestamp.
 
-Missions
-Common matters to both missions
-•	Order list is given differently for each mission Pizza Shop.
-•	There are no invalid orders (arriving at negative time, taking-outs, etc.).
-•	No delays (Orders registered immediately, No delay in delivering orders to tables)
-•	2000 ms – the duration of one timestamp A
-•	200 ms – the duration of one timestamp B
-•	4 - timestamps spent by one person to eat one small pizza
-•	6 - timestamps spent by one person to eat one large pizza
-•	10 – timestamps spent to reassign and move customers to other table
-•	Set of tables: 
-{ One table for 8; One table for 20; Four tables, each for 4; Five tables, each for 1 }. 
-You can choose these tables to use in a pizza shop. Avoid keeping redundant tables. 
-Precautions
-•	Before going into implementation, you should read all the issues and constraints carefully and proceed with the design.
-•	Designed and implemented with scalability in mind to control different number of tables.
-Mission 0. A small Pizza Shop (problem_id = 0)
-John opened a small pizza shop and bought his tables. Now he wants to simulate the pizza shop process using the management system before actually going into the work. 
-Condition:
-•	Number of Requests: 10 
-•	Number of ovens: 1
-•	8 – timestamps spent by an oven to cook one large pizza
-•	5 – timestamps spent by an oven to cook one small pizza
+Simulation should be showing the status of requests, ovens, and tables at any instance of the time.
+Mission_sample_dataset.txt (Annotated)
+_________________________________________________________________________________________________________________
+Short simulation      brief description of the simulation
+0,30,1,2,0            one customer arrives at timestamp (A) 30 into the simulation
+1,35,5,5,2            five customers arrive at timestamp (A) 35 into the simulation
+2,45,3,6,0            three customers arrive at timestamp (A) 45 into the simulation
+3,45,1,0,2            one customer arrives at timestamp (A) 45 into the simulation
+4,90,1,1,0            one customer arrives at timestamp (A) 90 into the simulation
+END                   the "END" tag marks the end of the customer arrivals
+_________________________________________________________________________________________________________________
 
-Mission 1. A large Pizza Shop (problem_id = 1)
-John is happy that he was successful with his small pizza shop. Now he wants to expand his business to a lager pizza shop. 
-But he is concerned how he will manage more number of ordering slots, ovens and tables during request peak times. Without efficient technique, his customers will stand in queues for far too long. 
-Condition:
-•	Number of Requests: 100 
-•	Number of ovens: 4
-•	6 – timestamps spent by an oven to cook one large pizza
-•	4 – timestamps spent by an oven to cook one small pizza
-
-Let's make customers happy by developing an efficient queuing and cooking arrangements based on the above!
-Hints: 
-1. Class `Oven`:
-2. 2. Class `Table`:
-   3. 3. Functions:
-      4. 4. Main Menu (Program Starts):
